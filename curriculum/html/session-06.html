@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第6回 | モダンWeb開発カリキュラム</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="sidebar">
+    <h2>Web Dev Course</h2>
+    <ul>
+      <li><a href="index.html">ホーム</a></li>
+      <li><a href="session-01.html">第1回: Hono入門</a></li>
+      <li><a href="session-02.html">第2回: API開発</a></li>
+      <li><a href="session-03.html">第3回: バリデーション</a></li>
+      <li><a href="session-04.html">第4回: RPC連携</a></li>
+      <li><a href="session-05.html">第5回: データベース</a></li>
+      <li><a href="session-06.html" class="active">第6回: 実践・デプロイ</a></li>
+      <li><a href="session-monorepo.html">特別回: モノレポ構成</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>第6回：実践アプリ構築とデプロイ</h1>
+
+    <div class="alert">
+      <strong>今日の目標:</strong> 全ての技術を組み合わせてアプリを完成させ、世界に公開する。
+    </div>
+
+    <h2>1. 最終課題：一言掲示板</h2>
+    <ul>
+      <li>入力フォームのバリデーション (Zod)</li>
+      <li>入力データの永続化 (D1)</li>
+      <li>最新の投稿一覧表示 (React + RPC)</li>
+    </ul>
+
+    <h2>2. クラウドへのデプロイ</h2>
+    <pre><code class="language-bash"># バックエンド
+npm run deploy
+
+# フロントエンド
+npx wrangler pages deploy dist</code></pre>
+
+    <div class="card">
+      <h3>おわりに</h3>
+      <p>お疲れ様でした！これであなたもモダンWeb開発者の仲間入りです。次は OAuth認証や R2ストレージなど、より高度な機能に挑戦してみましょう。</p>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+</body>
+</html>

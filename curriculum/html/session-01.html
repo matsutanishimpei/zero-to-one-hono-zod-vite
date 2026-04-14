@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第1回 | モダンWeb開発カリキュラム</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="sidebar">
+    <h2>Web Dev Course</h2>
+    <ul>
+      <li><a href="index.html">ホーム</a></li>
+      <li><a href="session-01.html" class="active">第1回: Hono入門</a></li>
+      <li><a href="session-02.html">第2回: API開発</a></li>
+      <li><a href="session-03.html">第3回: バリデーション</a></li>
+      <li><a href="session-04.html">第4回: RPC連携</a></li>
+      <li><a href="session-05.html">第5回: データベース</a></li>
+      <li><a href="session-06.html">第6回: 実践・デプロイ</a></li>
+      <li><a href="session-monorepo.html">特別回: モノレポ構成</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>第1回：モダンJS復習とCloudflare Hono入門</h1>
+
+    <div class="alert">
+      <strong>今日の目標:</strong> Cloudflareエコシステムを理解し、Honoで「Hello World」を表示する。
+    </div>
+
+    <h2>1. JavaScript/TypeScriptの「これだけは」復習</h2>
+    <p>現代的な開発で必須となる書き方を復習します。</p>
+    <pre><code class="language-typescript">// アロー関数
+const greet = (name: string) => `Hello ${name}`;
+
+// 非同期処理 (async/await)
+const res = await fetch('https://api.example.com');
+
+// 分割代入
+const { name, age } = { name: 'Taro', age: 20 };</code></pre>
+
+    <h2>2. Cloudflare & Hono とは？</h2>
+    <ul>
+      <li><strong>Cloudflare Workers:</strong> 世界中のエッジで動く高速なサーバーレス環境。</li>
+      <li><strong>Hono:</strong> 日本発の世界標準フレームワーク。超軽量で爆速です。</li>
+    </ul>
+
+    <h2>3. ハンズオン：最初のプロジェクト</h2>
+    <p>ターミナルで以下のコマンドを実行しましょう。</p>
+    <pre><code class="language-bash">npm create hono@latest my-app
+cd my-app
+npm install
+npm run dev</code></pre>
+
+    <p><code>src/index.ts</code> を編集してみましょう。</p>
+    <pre><code class="language-typescript">import { Hono } from 'hono'
+const app = new Hono()
+
+app.get('/', (c) => {
+  return c.text('Hello Hono! 爆速でWebサーバーが立ち上がりました。')
+})
+
+export default app</code></pre>
+
+    <div class="card">
+      <h3>まとめ</h3>
+      <ul>
+        <li><code>app.get('/', ...)</code> でパスを設定。</li>
+        <li><code>c.text()</code> でレスポンスを返却。</li>
+        <li><code>wrangler</code> が開発サーバーを担当。</li>
+      </ul>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+</body>
+</html>

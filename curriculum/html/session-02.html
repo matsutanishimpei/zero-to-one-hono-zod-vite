@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>第2回 | モダンWeb開発カリキュラム</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=Outfit:wght@700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="sidebar">
+    <h2>Web Dev Course</h2>
+    <ul>
+      <li><a href="index.html">ホーム</a></li>
+      <li><a href="session-01.html">第1回: Hono入門</a></li>
+      <li><a href="session-02.html" class="active">第2回: API開発</a></li>
+      <li><a href="session-03.html">第3回: バリデーション</a></li>
+      <li><a href="session-04.html">第4回: RPC連携</a></li>
+      <li><a href="session-05.html">第5回: データベース</a></li>
+      <li><a href="session-06.html">第6回: 実践・デプロイ</a></li>
+      <li><a href="session-monorepo.html">特別回: モノレポ構成</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <h1>第2回：HonoによるAPI開発の基本</h1>
+
+    <div class="alert">
+      <strong>今日の目標:</strong> APIのエンドポイントを作り、各種パラメータの受け取り方を理解する。
+    </div>
+
+    <h2>1. ルーティングの実装</h2>
+    <h3>パスパラメータ</h3>
+    <pre><code class="language-typescript">app.get('/user/:id', (c) => {
+  const id = c.req.param('id')
+  return c.json({ message: `ユーザーID ${id} の詳細です。` })
+})</code></pre>
+
+    <h3>クエリパラメータ</h3>
+    <pre><code class="language-typescript">app.get('/search', (c) => {
+  const query = c.req.query('q')
+  return c.json({ result: `「${query}」の検索結果（仮）` })
+})</code></pre>
+
+    <h2>2. POSTリクエストとJSON</h2>
+    <p>データを送信する際は <code>app.post</code> を使用します。</p>
+    <pre><code class="language-typescript">app.post('/posts', async (c) => {
+  const body = await c.req.json()
+  return c.json({
+    message: 'データを受け取りました！',
+    receivedData: body
+  }, 201)
+})</code></pre>
+
+    <div class="card">
+      <h3>ハンズオン課題：占いAPI</h3>
+      <p><code>/fortune</code> にアクセスすると、ランダムに運勢（大吉、中吉、小吉）をJSONで返すAPIを実装してください。</p>
+    </div>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+</body>
+</html>
