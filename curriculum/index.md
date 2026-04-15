@@ -7,7 +7,7 @@
 | 回数 | タイトル | 内容 |
 | :--- | :--- | :--- |
 | [第1回](session-01.md) | モダンJS復習とCloudflare Hono入門 | 開発環境構築、HonoでのHello World |
-| [第2回](session-02.md) | HonoによるAPI開発の基本 | ルーティング、リバースプロキシ、JSON通信 |
+| [第2回](session-02.md) | HonoによるAPI開発の基本 | ルーティング、JSON通信、パラメータ取得 |
 | [第3回](session-03.md) | Zodによるバリデーション | 型安全なデータ受け取り、エラーハンドリング |
 | [第4回](session-04.md) | Vite + Hono RPCによるフロント連携 | フロントエンド構築、型安全なAPI呼び出し |
 | [第5回](session-05.md) | Cloudflare D1（データベース） | サーバーレスDBへのデータ保存、SQL基礎 |

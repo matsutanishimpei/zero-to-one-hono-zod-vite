@@ -23,8 +23,23 @@ npm install hono
 
 **Backend (my-app/src/index.ts)**:
 ```typescript
-const route = app.post('/hello', ...)
+import { Hono } from 'hono'
+import { zValidator } from '@hono/zod-validator'
+import { z } from 'zod'
+
+const app = new Hono()
+
+const route = app.post(
+  '/hello',
+  zValidator('json', z.object({ name: z.string() })),
+  (c) => {
+    const { name } = c.req.valid('json')
+    return c.json({ message: `こんにちは、${name}さん！` })
+  }
+)
+
 export type AppType = typeof route
+export default app
 ```
 
 **Frontend (frontend/src/App.tsx)**:

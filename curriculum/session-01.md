@@ -7,7 +7,7 @@
 
 ## 2. JavaScript/TypeScriptの「これだけは」復習
 忘れていることが多い、あるいは現代的な書き方に馴染みがないポイントを復習します。
-- **アロー関数**: `const greet = (name) => `Hello ${name}``
+- **アロー関数**: `const greet = (name) => 'Hello ' + name`（テンプレートリテラル版: `` `Hello ${name}` ``）
 - **非同期処理 (async/await)**: `const res = await fetch(...)`
 - **分割代入**: `const { name, age } = user;`
 

@@ -27,6 +27,9 @@ npx wrangler d1 execute my-db --local --file=./schema.sql
 
 ## 4. HonoからのDB操作
 ```typescript
+import { z } from 'zod'
+import { zValidator } from '@hono/zod-validator'
+
 app.get('/messages', async (c) => {
   // DBから全件取得
   const { results } = await c.env.DB.prepare('SELECT * FROM messages').all()
