@@ -13,52 +13,78 @@
     <h2>Web Dev Course</h2>
     <ul>
       <li><a href="index.html">ホーム</a></li>
-      <li><a href="session-01.html">第1回: Hono入門</a></li>
-      <li><a href="session-02.html">第2回: API開発</a></li>
+      <li><a href="session-01.html">第1回: JS + TS入門</a></li>
+      <li><a href="session-02.html">第2回: Hono入門</a></li>
       <li><a href="session-03.html">第3回: バリデーション</a></li>
-      <li><a href="session-04.html" class="active">第4回: RPC連携</a></li>
-      <li><a href="session-05.html">第5回: データベース</a></li>
-      <li><a href="session-06.html">第6回: 実践・デプロイ</a></li>
+      <li><a href="session-04.html" class="active">第4回: React入門</a></li>
+      <li><a href="session-05.html">第5回: RPC連携</a></li>
+      <li><a href="session-06.html">第6回: データベース</a></li>
+      <li><a href="session-07.html">第7回: 実践・デプロイ</a></li>
       <li><a href="session-monorepo.html">特別回: モノレポ構成</a></li>
     </ul>
   </nav>
 
   <main>
-    <h1>第4回：Vite + Hono RPCによるフロント連携</h1>
+    <h1>第4回：React入門（Vite + React）</h1>
 
     <div class="alert">
-      <strong>今日の目標:</strong> APIの型をフロントエンドと共有し、型安全な通信を実装する。
+      <strong>今日の目標:</strong> React の基本（JSX、コンポーネント、State）を理解し、動的な画面を作る。
     </div>
 
-    <h2>1. RPC機能のメリット</h2>
-    <p>URLを文字列で書く必要がなくなり、補完が効くようになります。APIの変更にも即座に気づけます。</p>
+    <h2>1. プロジェクト作成</h2>
+    <pre><code class="language-bash">npm create vite@latest my-frontend -- --template react-ts
+cd my-frontend
+npm install
+npm run dev</code></pre>
 
-    <h2>2. フロントエンドの準備</h2>
-    <pre><code class="language-bash">npm create vite@latest frontend -- --template react-ts
-cd frontend
-npm install hono</code></pre>
+    <h2>2. JSX</h2>
+    <p>HTMLに似た構文をJavaScript内に書けます。<code>{}</code> で式を埋め込みます。</p>
+    <pre><code class="language-tsx">const name = 'Taro'
+const element = &lt;h1&gt;Hello, {name}!&lt;/h1&gt;</code></pre>
 
-    <h2>3. 連携コード</h2>
-    <pre><code class="language-typescript">// Frontend (App.tsx)
-import { hc } from 'hono/client'
-import type { AppType } from '../../backend/src/index'
+    <h2>3. コンポーネント</h2>
+    <pre><code class="language-tsx">function Greeting({ name }: { name: string }) {
+  return &lt;h1&gt;こんにちは、{name}さん！&lt;/h1&gt;
+}</code></pre>
 
-const client = hc<AppType>('http://localhost:8787')
+    <h2>4. useState</h2>
+    <pre><code class="language-tsx">import { useState } from 'react'
 
-const fetchHello = async () => {
-  const res = await client.hello.$post({ json: { name: '学生' } })
-  const data = await res.json()
-  console.log(data.message)
+function Counter() {
+  const [count, setCount] = useState(0)
+
+  return (
+    &lt;div&gt;
+      &lt;p&gt;カウント: {count}&lt;/p&gt;
+      &lt;button onClick={() =&gt; setCount(count + 1)}&gt;+1&lt;/button&gt;
+    &lt;/div&gt;
+  )
+}</code></pre>
+
+    <h2>5. useEffect</h2>
+    <pre><code class="language-tsx">import { useState, useEffect } from 'react'
+
+function DataLoader() {
+  const [message, setMessage] = useState('読み込み中...')
+
+  useEffect(() =&gt; {
+    fetch('http://localhost:8787/')
+      .then(res =&gt; res.text())
+      .then(data =&gt; setMessage(data))
+  }, [])
+
+  return &lt;p&gt;{message}&lt;/p&gt;
 }</code></pre>
 
     <div class="card">
       <h3>ハンズオン</h3>
-      <p>サーバーから取得したデータを React の State に保存して、画面に表示させてみましょう。</p>
+      <p>入力フォームとボタンで、入力内容がリストに追加される「シンプルTODOリスト」を作ってみましょう。</p>
     </div>
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-tsx.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 </body>
 </html>

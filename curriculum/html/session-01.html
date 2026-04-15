@@ -13,69 +13,76 @@
     <h2>Web Dev Course</h2>
     <ul>
       <li><a href="index.html">ホーム</a></li>
-      <li><a href="session-01.html" class="active">第1回: Hono入門</a></li>
-      <li><a href="session-02.html">第2回: API開発</a></li>
+      <li><a href="session-01.html" class="active">第1回: JS + TS入門</a></li>
+      <li><a href="session-02.html">第2回: Hono入門</a></li>
       <li><a href="session-03.html">第3回: バリデーション</a></li>
-      <li><a href="session-04.html">第4回: RPC連携</a></li>
-      <li><a href="session-05.html">第5回: データベース</a></li>
-      <li><a href="session-06.html">第6回: 実践・デプロイ</a></li>
+      <li><a href="session-04.html">第4回: React入門</a></li>
+      <li><a href="session-05.html">第5回: RPC連携</a></li>
+      <li><a href="session-06.html">第6回: データベース</a></li>
+      <li><a href="session-07.html">第7回: 実践・デプロイ</a></li>
       <li><a href="session-monorepo.html">特別回: モノレポ構成</a></li>
     </ul>
   </nav>
 
   <main>
-    <h1>第1回：モダンJS復習とCloudflare Hono入門</h1>
+    <h1>第1回：モダンJS復習とTypeScript入門</h1>
 
     <div class="alert">
-      <strong>今日の目標:</strong> Cloudflareエコシステムを理解し、Honoで「Hello World」を表示する。
+      <strong>今日の目標:</strong> JavaScriptの現代的な書き方を復習し、TypeScriptの「型」の基本を理解する。
     </div>
 
-    <h2>1. JavaScript/TypeScriptの「これだけは」復習</h2>
-    <p>現代的な開発で必須となる書き方を復習します。</p>
-    <pre><code class="language-typescript">// アロー関数
-const greet = (name: string) => `Hello ${name}`;
+    <h2>1. JavaScript 復習</h2>
+    <h3>アロー関数</h3>
+    <pre><code class="language-javascript">const greet = (name) => 'Hello ' + name;</code></pre>
 
-// 非同期処理 (async/await)
-const res = await fetch('https://api.example.com');
+    <h3>テンプレートリテラル</h3>
+    <pre><code class="language-javascript">const name = 'Taro';
+const message = `Hello ${name}!`; // "Hello Taro!"</code></pre>
 
-// 分割代入
-const { name, age } = { name: 'Taro', age: 20 };</code></pre>
+    <h3>async/await</h3>
+    <pre><code class="language-javascript">const fetchData = async () => {
+  const res = await fetch('https://api.example.com/data');
+  const data = await res.json();
+};</code></pre>
 
-    <h2>2. Cloudflare & Hono とは？</h2>
-    <ul>
-      <li><strong>Cloudflare Workers:</strong> 世界中のエッジで動く高速なサーバーレス環境。</li>
-      <li><strong>Hono:</strong> 日本発の世界標準フレームワーク。超軽量で爆速です。</li>
-    </ul>
+    <h3>分割代入</h3>
+    <pre><code class="language-javascript">const { name, age } = { name: 'Taro', age: 20 };</code></pre>
 
-    <h2>3. ハンズオン：最初のプロジェクト</h2>
-    <p>ターミナルで以下のコマンドを実行しましょう。</p>
-    <pre><code class="language-bash">npm create hono@latest my-app
-cd my-app
-npm install
-npm run dev</code></pre>
+    <h2>2. TypeScript とは？</h2>
+    <p>JavaScript に「型」を追加した言語です。バグを書いた瞬間にエディタが教えてくれます。</p>
+    <pre><code class="language-typescript">// 型注釈：変数の後に ": 型名" を書く
+const name: string = 'Taro';
+const age: number = 20;
+const isStudent: boolean = true;
 
-    <p><code>src/index.ts</code> を編集してみましょう。</p>
-    <pre><code class="language-typescript">import { Hono } from 'hono'
-const app = new Hono()
+// 型推論：明らかな場合は省略可能
+const city = 'Tokyo'; // string と推論される</code></pre>
 
-app.get('/', (c) => {
-  return c.text('Hello Hono! 爆速でWebサーバーが立ち上がりました。')
-})
+    <h2>3. オブジェクトの型</h2>
+    <pre><code class="language-typescript">type User = {
+  name: string;
+  age: number;
+  email: string;
+};
 
-export default app</code></pre>
+const user: User = {
+  name: 'Taro',
+  age: 20,
+  email: 'taro@example.com'
+};</code></pre>
 
     <div class="card">
       <h3>まとめ</h3>
       <ul>
-        <li><code>app.get('/', ...)</code> でパスを設定。</li>
-        <li><code>c.text()</code> でレスポンスを返却。</li>
-        <li><code>wrangler</code> が開発サーバーを担当。</li>
+        <li>アロー関数、<code>async/await</code>、分割代入は必須知識。</li>
+        <li>TypeScript は「<code>: string</code>」のように型を書いてバグを防ぐ。</li>
+        <li><code>type</code> でオブジェクトの形を定義できる。</li>
       </ul>
     </div>
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
 </body>
 </html>

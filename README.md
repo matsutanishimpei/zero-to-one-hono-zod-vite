@@ -1,6 +1,6 @@
 # Modern Web Development Curriculum (Hono + Cloudflare + Zod + Vite)
 
-このリポジトリは、JavaScriptの基礎を学んだ学生を対象に、現代的なフルスタックWeb開発の手法を習得するための授業資料（全6回 + 特別回）を格納しています。
+このリポジトリは、JavaScriptの基礎を学んだ学生を対象に、現代的なフルスタックWeb開発の手法を習得するための授業資料（全7回 + 特別回）を格納しています。
 
 ## 🚀 カリキュラムの概要
 
@@ -18,13 +18,14 @@
 
 | 回数 | タイトル | 内容 |
 | :--- | :--- | :--- |
-| 第1回 | モダンJS復習とCloudflare Hono入門 | 開発環境構築、HonoでのHello World |
-| 第2回 | HonoによるAPI開発の基本 | ルーティング、JSON通信、パラメータ取得 |
-| 第3回 | Zodによるデータバリデーション | 型安全なデータ受け取り、エラーハンドリング |
-| 第4回 | Vite + Hono RPCによるフロント連携 | フロントエンド構築、型安全なAPI呼び出し |
-| 第5回 | Cloudflare D1（データベース） | サーバーレスDBへのデータ保存、SQL基礎 |
-| 第6回 | 実践アプリ構築とデプロイ | 知識の統合、Cloudflareへの公開 |
-| 特別回 | [モノレポ構成とコード共有](curriculum/session-monorepo.md) | `npm workspaces` を使ったパッケージ分割 |
+| 第1回 | モダンJS復習とTypeScript入門 | アロー関数、async/await、型注釈、型推論 |
+| 第2回 | Cloudflare Hono入門 | プロジェクト作成、ルーティング、エラーの読み方 |
+| 第3回 | Zodによるデータバリデーション | スキーマ定義、zValidator、z.infer |
+| 第4回 | React入門 | JSX、コンポーネント、useState、useEffect |
+| 第5回 | Hono RPCによるフロント連携 | 型安全な通信、CORS設定 |
+| 第6回 | Cloudflare D1（データベース） | Bindings、SQL基礎、CRUD操作 |
+| 第7回 | 実践アプリ構築とデプロイ | 統合、DevTools、Cloudflareへの公開 |
+| 特別回 | モノレポ構成とコード共有 | npm workspaces、パッケージ分割 |
 
 ## 💻 閲覧方法
 

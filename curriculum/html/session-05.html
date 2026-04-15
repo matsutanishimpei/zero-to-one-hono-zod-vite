@@ -13,47 +13,68 @@
     <h2>Web Dev Course</h2>
     <ul>
       <li><a href="index.html">ホーム</a></li>
-      <li><a href="session-01.html">第1回: Hono入門</a></li>
-      <li><a href="session-02.html">第2回: API開発</a></li>
+      <li><a href="session-01.html">第1回: JS + TS入門</a></li>
+      <li><a href="session-02.html">第2回: Hono入門</a></li>
       <li><a href="session-03.html">第3回: バリデーション</a></li>
-      <li><a href="session-04.html">第4回: RPC連携</a></li>
-      <li><a href="session-05.html" class="active">第5回: データベース</a></li>
-      <li><a href="session-06.html">第6回: 実践・デプロイ</a></li>
+      <li><a href="session-04.html">第4回: React入門</a></li>
+      <li><a href="session-05.html" class="active">第5回: RPC連携</a></li>
+      <li><a href="session-06.html">第6回: データベース</a></li>
+      <li><a href="session-07.html">第7回: 実践・デプロイ</a></li>
       <li><a href="session-monorepo.html">特別回: モノレポ構成</a></li>
     </ul>
   </nav>
 
   <main>
-    <h1>第5回：Cloudflare D1（データベース）</h1>
+    <h1>第5回：Hono RPCによるフロント連携</h1>
 
     <div class="alert">
-      <strong>今日の目標:</strong> サーバーレスデータベースを活用し、データの永続化を実装する。
+      <strong>今日の目標:</strong> Hono RPC を使い、フロントエンドからバックエンドの関数を型安全に呼び出す。
     </div>
 
-    <h2>1. D1の作成</h2>
-    <pre><code class="language-bash">npx wrangler d1 create my-db</code></pre>
+    <h2>1. 従来の問題</h2>
+    <pre><code class="language-typescript">// URL文字列 → タイポしてもエディタが気付かない
+const res = await fetch('/api/users')
+const data = await res.json() // data は any 型</code></pre>
 
-    <h2>2. スキーマ定義</h2>
-    <pre><code class="language-sql">CREATE TABLE messages (
-  id INTEGER PRIMARY KEY AUTOINCREMENT,
-  content TEXT NOT NULL
-);</code></pre>
+    <h2>2. バックエンド側</h2>
+    <pre><code class="language-typescript">import { Hono } from 'hono'
+import { zValidator } from '@hono/zod-validator'
+import { z } from 'zod'
+import { cors } from 'hono/cors'
 
-    <h2>3. Honoからの操作</h2>
-    <pre><code class="language-typescript">app.get('/messages', async (c) => {
-  const { results } = await c.env.DB.prepare('SELECT * FROM messages').all()
-  return c.json(results)
-})</code></pre>
+const app = new Hono()
+app.use('*', cors())
+
+const route = app.post(
+  '/hello',
+  zValidator('json', z.object({ name: z.string() })),
+  (c) => {
+    const { name } = c.req.valid('json')
+    return c.json({ message: `こんにちは、${name}さん！` })
+  }
+)
+
+export type AppType = typeof route
+export default app</code></pre>
+
+    <h2>3. フロントエンド側</h2>
+    <pre><code class="language-typescript">import { hc } from 'hono/client'
+import type { AppType } from '../../backend/src/index'
+
+const client = hc&lt;AppType&gt;('http://localhost:8787')
+
+// 補完が効く！URLのタイポが不可能に
+const res = await client.hello.$post({ json: { name: '学生' } })
+const data = await res.json()
+console.log(data.message)</code></pre>
 
     <div class="card">
-      <h3>まとめ</h3>
-      <p>D1 は SQLite ベースであり、サーバーの管理を必要としない「サーバーレス」なデータベースです。</p>
+      <h3>ハンズオン</h3>
+      <p>入力フォームから名前を送信し、レスポンスを React の State で画面に表示しましょう。<code>client.</code> の後に補完が効くことを確認してください。</p>
     </div>
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-sql.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
 </body>
 </html>

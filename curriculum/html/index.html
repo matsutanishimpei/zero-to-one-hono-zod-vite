@@ -14,21 +14,22 @@
     <h2>Web Dev Course</h2>
     <ul>
       <li><a href="index.html" class="active">ホーム</a></li>
-      <li><a href="session-01.html">第1回: Hono入門</a></li>
-      <li><a href="session-02.html">第2回: API開発</a></li>
+      <li><a href="session-01.html">第1回: JS + TS入門</a></li>
+      <li><a href="session-02.html">第2回: Hono入門</a></li>
       <li><a href="session-03.html">第3回: バリデーション</a></li>
-      <li><a href="session-04.html">第4回: RPC連携</a></li>
-      <li><a href="session-05.html">第5回: データベース</a></li>
-      <li><a href="session-06.html">第6回: 実践・デプロイ</a></li>
+      <li><a href="session-04.html">第4回: React入門</a></li>
+      <li><a href="session-05.html">第5回: RPC連携</a></li>
+      <li><a href="session-06.html">第6回: データベース</a></li>
+      <li><a href="session-07.html">第7回: 実践・デプロイ</a></li>
       <li><a href="session-monorepo.html">特別回: モノレポ構成</a></li>
     </ul>
   </nav>
 
   <main>
     <h1>Cloudflare + Hono + Zod + Vite モダン開発カリキュラム</h1>
-    
+
     <div class="card">
-      <p>このカリキュラムは、JavaScriptの基礎を触ったことがあるものの、ブランクがある学生を対象に、現代的なWeb開発スタックを90分×6回の授業で習得することを目的としています。</p>
+      <p>JavaScriptの基礎を触ったことがある学生を対象に、現代的なWeb開発スタックを90分×7回の授業で習得することを目的としたカリキュラムです。</p>
     </div>
 
     <h2>授業スケジュール</h2>
@@ -44,38 +45,43 @@
         <tbody>
           <tr>
             <td>1</td>
-            <td><a href="session-01.html">モダンJS復習とCloudflare Hono入門</a></td>
-            <td>開発環境構築、HonoでのHello World</td>
+            <td><a href="session-01.html">モダンJS復習とTypeScript入門</a></td>
+            <td>アロー関数、async/await、型注釈、型推論</td>
           </tr>
           <tr>
             <td>2</td>
-            <td><a href="session-02.html">HonoによるAPI開発の基本</a></td>
-            <td>ルーティング、JSON通信、パラメータ取得</td>
+            <td><a href="session-02.html">Cloudflare Hono入門</a></td>
+            <td>プロジェクト作成、ルーティング、エラーの読み方</td>
           </tr>
           <tr>
             <td>3</td>
-            <td><a href="session-03.html">Zodによるデータバリデーション</a></td>
-            <td>型安全なデータ受け取り、エラーハンドリング</td>
+            <td><a href="session-03.html">Zodによるバリデーション</a></td>
+            <td>スキーマ定義、zValidator、z.infer</td>
           </tr>
           <tr>
             <td>4</td>
-            <td><a href="session-04.html">Vite + Hono RPCによるフロント連携</a></td>
-            <td>フロントエンド構築、型安全なAPI呼び出し</td>
+            <td><a href="session-04.html">React入門</a></td>
+            <td>JSX、コンポーネント、useState、useEffect</td>
           </tr>
           <tr>
             <td>5</td>
-            <td><a href="session-05.html">Cloudflare D1（データベース）</a></td>
-            <td>サーバーレスDBへのデータ保存、SQL基礎</td>
+            <td><a href="session-05.html">Hono RPCによるフロント連携</a></td>
+            <td>型安全な通信、CORS設定</td>
           </tr>
           <tr>
             <td>6</td>
-            <td><a href="session-06.html">実践アプリ構築とデプロイ</a></td>
-            <td>知識の統合、Cloudflareへの公開</td>
+            <td><a href="session-06.html">Cloudflare D1（データベース）</a></td>
+            <td>Bindings、SQL基礎、CRUD操作</td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td><a href="session-07.html">実践アプリ構築とデプロイ</a></td>
+            <td>統合、DevTools、Cloudflareへの公開</td>
           </tr>
           <tr>
             <td>Ex</td>
             <td><a href="session-monorepo.html">モノレポ構成とコード共有</a></td>
-            <td>npm workspaces、型共有、パッケージ分割</td>
+            <td>npm workspaces、パッケージ分割</td>
           </tr>
         </tbody>
       </table>
@@ -84,7 +90,7 @@
     <h2>推奨環境</h2>
     <ul>
       <li><strong>Node.js</strong>: v20以上推奨</li>
-      <li><strong>エディタ</strong>: VS Code</li>
+      <li><strong>エディタ</strong>: VS Code (Prettier, ESLint)</li>
       <li><strong>アカウント</strong>: Cloudflare アカウント（無料）</li>
     </ul>
   </main>
